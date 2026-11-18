@@ -1,0 +1,607 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Travelin Aja Dulu: paket wisata dan pemandu perjalanan ke berbagai destinasi di Indonesia." />
+    <title>Travelin Aja Dulu</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="chat.css" />
+  </head>
+  <body>
+    <nav>
+      <div class="layar-dalam">
+        <div class="logo">
+          <a href="#home"><img src="asset/logo-white.png" class="putih" alt="Logo Travel" /></a>
+          <a href="#home"><img src="asset/logo-black.png" class="hitam" alt="Logo Travel" /></a>
+        </div>
+        <div class="menu">
+          <a href="#" class="tombol-menu" aria-label="Buka menu">
+            <span class="garis"></span>
+            <span class="garis"></span>
+            <span class="garis"></span>
+          </a>
+          <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#aboutus">About Us</a></li>
+            <li><a href="#support">Support</a></li>
+            <li><a href="#paket">Paket</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#team">Team</a></li>
+            <li><a href="#blog">Blog</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="layar-penuh">
+      <header id="home">
+        <div class="overlay"></div>
+        <video autoplay muted loop playsinline>
+          <source src="asset/video-indonesia.mp4" type="video/mp4" />
+        </video>
+        <div class="intro">
+          <h3>Visit Indonesia</h3>
+          <p>
+            Jelajahi keindahan Nusantara, dari gunung hingga lautan,
+            bersama pemandu berpengalaman kami.
+          </p>
+          <p><a href="#paket" class="tombol">PESAN SEKARANG</a></p>
+        </div>
+      </header>
+
+      <main>
+        <section id="aboutus">
+          <div class="layar-dalam">
+            <h3>About Us</h3>
+            <p class="ringkasan">
+              Mengenal lebih dekat tim kami yang siap menemani setiap perjalanan dan petualangan Anda.
+            </p>
+            <div class="konten-isi">
+              <p>
+                Kami hadir untuk memberikan pengalaman perjalanan yang aman, nyaman, dan berkesan. Didukung oleh tim profesional, pemandu berpengalaman,
+                serta perlengkapan yang memadai, kami berkomitmen menghadirkan petualangan terbaik bagi setiap pelanggan.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section class="abuabu" id="support">
+          <div class="layar-dalam">
+            <h3>Support</h3>
+            <p class="ringkasan">Kami siap mendukung perjalanan Anda dari awal hingga akhir.</p>
+            <div class="support">
+              <div>
+                <img src="asset/matahari.png" alt="Ikon matahari" />
+                <h6>In Every Condition</h6>
+                <p>Kami siap menemani perjalanan dalam berbagai kondisi dengan mengutamakan keselamatan dan kenyamanan.</p>
+              </div>
+              <div>
+                <img src="asset/tas.png" alt="Ikon tas" />
+                <h6>Profesional Team</h6>
+                <p>Didukung tim yang berpengalaman, bertanggung jawab, dan siap memberikan pelayanan terbaik.</p>
+              </div>
+              <div>
+                <img src="asset/kompas.png" alt="Ikon kompas" />
+                <h6>Expert Hikers</h6>
+                <p>Dipandu oleh orang-orang yang memahami jalur pendakian dan mengutamakan keamanan selama perjalanan.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="paket">
+          <div class="layar-dalam">
+            <h3>Paket Wisata</h3>
+            <p class="ringkasan">Pilih tujuan, lalu atur paket dan kebutuhan perjalanan Anda.</p>
+
+            <!-- Belum login: hanya tombol login -->
+            <div class="kotak-kunci gerbang-login" id="gerbang-login">
+              <div class="ikon-kunci">🔒</div>
+              <h4>Login untuk Pemesanan</h4>
+              <p>Masuk atau daftar akun untuk melihat tujuan, memilih paket, dan memesan.</p>
+              <button type="button" class="tombol buka-auth" data-tab="masuk">LOGIN UNTUK PEMESANAN</button>
+              <button type="button" class="tombol tombol-hollow buka-auth" data-tab="daftar">DAFTAR</button>
+              <p class="galat-gerbang" id="galat-gerbang" role="alert"></p>
+            </div>
+
+            <!-- Sudah login -->
+            <div id="konten-paket" hidden>
+              <p class="bar-akun" id="bar-akun">
+                Masuk sebagai <strong id="nama-akun"></strong> <span id="label-peran"></span> ·
+                <button type="button" class="link-tombol" id="ganti-sandi">Ganti kata sandi</button> ·
+                <button type="button" class="link-tombol" id="keluar">Keluar</button>
+              </p>
+
+              <!-- Menu admin -->
+              <div class="toolbar-admin" id="toolbar-admin" hidden>
+                <button type="button" class="tombol tab-admin" data-panel="katalog">KELOLA KATALOG</button>
+                <button type="button" class="tombol tombol-hollow tab-admin" data-panel="pesanan">PESANAN MASUK</button>
+                <button type="button" class="tombol tombol-hollow tab-admin" data-panel="promo">KODE PROMO</button>
+                <button type="button" class="tombol tombol-hollow tab-admin" data-panel="akun">AKUN PELANGGAN</button>
+                <button type="button" class="tombol tombol-hollow tab-admin" data-panel="chat">CHAT PELANGGAN <span class="badge-chat" id="badge-chat-admin" hidden>0</span></button>
+              </div>
+
+              <!-- Katalog (admin kelola, pelanggan memilih) -->
+              <div id="panel-katalog">
+                <p class="catatan khusus-pelanggan">Harga tujuan dan paket dihitung per orang. Jumlah peserta diisi di langkah 4.</p>
+
+                <h4 class="langkah">1. Pilih Tujuan</h4>
+                <div class="tujuan" id="daftar-tujuan"></div>
+
+                <h4 class="langkah">2. Pilih Paket (opsional)</h4>
+                <div class="paket" id="daftar-paket"></div>
+
+                <h4 class="langkah">3. Tambahan (opsional)</h4>
+                <p class="ringkasan">Atur sendiri kebutuhan perjalananmu, total dihitung otomatis.</p>
+
+                <div class="pesan-satuan">
+                  <div id="daftar-tambahan"></div>
+
+                  <div class="khusus-pelanggan">
+                    <h4 class="langkah">4. Data Pemesan</h4>
+                    <div class="form-pesan">
+                      <label for="nama">Nama lengkap</label>
+                      <input type="text" id="nama" placeholder="Nama Anda" maxlength="60" autocomplete="name" />
+
+                      <label for="tanggal">Tanggal keberangkatan</label>
+                      <input type="date" id="tanggal" />
+
+                      <label for="peserta">Jumlah peserta</label>
+                      <div class="jumlah-kontrol">
+                        <button type="button" id="peserta-kurang">−</button>
+                        <input type="number" id="peserta" class="jumlah-peserta" value="1" min="1" max="50" inputmode="numeric" />
+                        <button type="button" id="peserta-tambah">+</button>
+                      </div>
+
+                      <label for="kode-promo">Kode promo (opsional)</label>
+                      <div class="baris-promo">
+                        <input type="text" id="kode-promo" placeholder="Masukkan kode" maxlength="20" />
+                        <button type="button" class="tombol" id="terapkan-promo">TERAPKAN</button>
+                      </div>
+                      <p id="info-promo" class="info-promo"></p>
+                    </div>
+
+                    <h4 class="langkah">5. Ringkasan Pesanan</h4>
+                    <div class="ringkasan-pesanan">
+                      <div id="isi-ringkasan"><p>Belum ada pilihan.</p></div>
+                      <div class="total-satuan">
+                        <span>Total</span>
+                        <strong id="total-harga">Rp 0</strong>
+                      </div>
+                    </div>
+                    <p id="pesan-error" class="pesan-error" role="alert"></p>
+                    <a href="#" class="tombol" id="pesan-final">BUAT PESANAN &amp; BAYAR</a>
+
+                    <h4 class="langkah">Pesanan Saya</h4>
+                    <div class="daftar-pesanan" id="pesanan-saya"><p>Memuat...</p></div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Pesanan masuk (admin) -->
+              <div id="panel-pesanan" hidden>
+                <h4 class="langkah">Pesanan Masuk</h4>
+                <div class="filter-pesanan">
+                  <label for="filter-status">Tampilkan:</label>
+                  <select id="filter-status">
+                    <option value="">Semua status</option>
+                    <option value="menunggu_pembayaran">Menunggu pembayaran</option>
+                    <option value="menunggu_verifikasi">Menunggu verifikasi</option>
+                    <option value="lunas">Lunas</option>
+                    <option value="batal">Dibatalkan</option>
+                  </select>
+                  <button type="button" class="link-tombol" id="muat-ulang-pesanan">Muat ulang</button>
+                </div>
+                <div class="daftar-pesanan" id="daftar-pesanan-admin"></div>
+              </div>
+
+              <!-- Kode promo (admin) -->
+              <div id="panel-promo" hidden>
+                <h4 class="langkah">Kode Promo</h4>
+                <div class="daftar-pesanan">
+                  <form id="form-promo" class="form-pesan">
+                    <label for="promo-kode">Kode</label>
+                    <input type="text" id="promo-kode" maxlength="20" placeholder="contoh: LIBURAN15" />
+                    <label for="promo-tipe">Jenis potongan</label>
+                    <select id="promo-tipe">
+                      <option value="persen">Persen (%)</option>
+                      <option value="nominal">Nominal (Rp)</option>
+                    </select>
+                    <label for="promo-nilai">Nilai</label>
+                    <input type="number" id="promo-nilai" min="1" placeholder="10 atau 50000" />
+                    <p class="galat-auth" id="galat-promo" role="alert"></p>
+                    <button type="submit" class="tombol">SIMPAN KODE PROMO</button>
+                  </form>
+                  <div id="daftar-promo" class="daftar-promo"></div>
+                </div>
+              </div>
+
+              <!-- Akun pelanggan (admin) -->
+              <div id="panel-akun" hidden>
+                <h4 class="langkah">Akun Pelanggan</h4>
+                <div class="filter-pesanan">
+                  <input type="text" id="cari-akun" placeholder="Cari nama atau email" maxlength="60" />
+                  <button type="button" class="link-tombol" id="muat-ulang-akun">Muat ulang</button>
+                </div>
+                <div class="daftar-pesanan" id="daftar-akun"></div>
+              </div>
+
+              <!-- Chat pelanggan (admin) -->
+              <div id="panel-chat" hidden>
+                <h4 class="langkah">Chat Pelanggan</h4>
+                <div class="chat-admin">
+                  <div class="daftar-percakapan" id="daftar-percakapan"></div>
+                  <div class="kotak-cs">
+                    <p class="judul-percakapan" id="judul-percakapan">Pilih percakapan di sebelah kiri.</p>
+                    <div class="isi-cs" id="isi-chat-admin"></div>
+                    <form class="form-cs" id="form-chat-admin" autocomplete="off" hidden>
+                      <input type="text" id="input-chat-admin" maxlength="1000" placeholder="Tulis balasan..." />
+                      <button type="submit" class="tombol">BALAS</button>
+                    </form>
+                    <p class="galat-auth" id="galat-chat-admin" role="alert"></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="gallery">
+          <div><img src="asset/foto1.jpg" alt="Foto destinasi wisata 1" /></div>
+          <div><img src="asset/foto2.jpg" alt="Foto destinasi wisata 2" /></div>
+          <div><img src="asset/foto3.jpg" alt="Foto destinasi wisata 3" /></div>
+          <div><img src="asset/foto4.jpg" alt="Foto destinasi wisata 4" /></div>
+          <div><img src="asset/foto5.jpg" alt="Foto destinasi wisata 5" /></div>
+          <div><img src="asset/foto6.jpg" alt="Foto destinasi wisata 6" /></div>
+          <div><img src="asset/foto7.jpg" alt="Foto destinasi wisata 7" /></div>
+          <div><img src="asset/foto8.jpg" alt="Foto destinasi wisata 8" /></div>
+        </section>
+
+        <section class="quote">
+          <div class="layar-dalam">
+            <p>Jogja terbuat dari rindu,pulang dan angkringan.</p>
+          </div>
+        </section>
+
+        <section class="abuabu" id="testimoni">
+          <div class="layar-dalam">
+            <h3>Kata Mereka</h3>
+            <p class="ringkasan">Pengalaman para pelancong yang sudah berangkat bersama kami.</p>
+            <div class="testimoni">
+              <div class="testi">
+                <div class="avatar">A</div>
+                <div class="bintang">★★★★★</div>
+                <p>"Sunrise di Bromo luar biasa, pemandunya sabar dan ramah. Semua berjalan sesuai jadwal."</p>
+                <strong>Andi Pratama</strong>
+                <span>Gunung Bromo</span>
+              </div>
+              <div class="testi">
+                <div class="avatar">S</div>
+                <div class="bintang">★★★★★</div>
+                <p>"Pesannya gampang, total langsung kelihatan. Liburan keluarga ke Jogja jadi tenang."</p>
+                <strong>Sari Wulandari</strong>
+                <span>Yogyakarta</span>
+              </div>
+              <div class="testi">
+                <div class="avatar">R</div>
+                <div class="bintang">★★★★☆</div>
+                <p>"Raja Ampat-nya cantik banget. Dokumentasinya juga bagus, jadi kenangan berharga."</p>
+                <strong>Rizky Maulana</strong>
+                <span>Raja Ampat</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="team">
+          <div class="layar-dalam">
+            <h3>Our Team</h3>
+            <p class="ringkasan">
+              "Kenali orang-orang di balik setiap perjalanan.
+              Kami adalah tim yang memiliki semangat, tujuan,
+              dan komitmen untuk menciptakan pengalaman yang berkesan."
+            </p>
+            <div class="tim">
+              <div>
+                <img src="asset/tim1.jpg" alt="John Doe, Tour Guide" />
+                <h6>John Doe</h6>
+                <h7>(Tour Guide)</h7>
+                <span>Indonesia</span>
+                <p class="ringkasan">Bertugas memandu perjalanan, memberikan informasi menarik tentang destinasi, serta memastikan setiap perjalanan berjalan aman dan menyenangkan.</p>
+              </div>
+              <div>
+                <img src="asset/tim2.jpg" alt="Herman, Dokumenter" />
+                <h6>Herman</h6>
+                <h7>(Dokumenter)</h7>
+                <span>Turkey</span>
+                <p class="ringkasan">Bertugas mengabadikan setiap momen perjalanan melalui foto dan video, sehingga setiap pengalaman menjadi kenangan yang berkesan.</p>
+              </div>
+              <div>
+                <img src="asset/tim3.jpg" alt="Mulyono, Equipment Provider" />
+                <h6>Mulyono</h6>
+                <h7>(Equipment Provider)</h7>
+                <span>China</span>
+                <p class="ringkasan">Bertanggung jawab menyediakan dan mempersiapkan perlengkapan perjalanan untuk menunjang kenyamanan, keamanan, dan kelancaran kegiatan.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="abuabu" id="blog">
+          <div class="layar-dalam">
+            <h3>Lastest Blog</h3>
+            <p class="ringkasan">
+              Temukan cerita perjalanan, keindahan alam, dan pengalaman menarik dari
+              berbagai destinasi yang menghadirkan kenangan tak terlupakan.
+            </p>
+            <div class="blog">
+              <div class="area">
+                <div class="gambar" style="background-image: url('asset/blog1.jpg')"></div>
+                <div class="text">
+                  <article>
+                    <h4><a href="#">What About Bromo?</a></h4>
+                    <p>Menikmati keindahan matahari terbit di Gunung Bromo, menyaksikan hamparan lautan pasir, dan merasakan suasana alam yang begitu menakjubkan.</p>
+                  </article>
+                </div>
+              </div>
+              <div class="area">
+                <div class="gambar" style="background-image: url('asset/blog2.jpg')"></div>
+                <div class="text">
+                  <article>
+                    <h4><a href="#">What About Yogyakarta?</a></h4>
+                    <p>Menjelajahi pesona Yogyakarta, mulai dari wisata budaya, keindahan alam, hingga tempat-tempat bersejarah yang menyimpan banyak cerita.</p>
+                  </article>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="faq">
+          <div class="layar-dalam">
+            <h3>FAQ</h3>
+            <p class="ringkasan">Pertanyaan yang sering diajukan.</p>
+            <div class="faq">
+              <details>
+                <summary>Bagaimana cara memesan?</summary>
+                <p>Masuk atau daftar akun di bagian Paket, lalu pilih tujuan, paket (opsional), dan tambahan, isi data pemesan, lalu klik "Lanjut ke Pembayaran". Setelah membayar lewat QRIS, kirim bukti pembayaran melalui WhatsApp.</p>
+              </details>
+              <details>
+                <summary>Apa saja yang termasuk dalam paket?</summary>
+                <p>Isi tiap paket tertera di kartu Paket A, B, dan C. Kebutuhan di luar paket bisa ditambahkan lewat bagian Tambahan.</p>
+              </details>
+              <details>
+                <summary>Apakah harga dihitung per orang?</summary>
+                <p>Harga tujuan dan paket dihitung per orang, lalu dikalikan jumlah peserta. Item tambahan dihitung sesuai jumlah yang Anda pilih.</p>
+              </details>
+              <details>
+                <summary>Bagaimana jika ingin mengubah atau membatalkan pesanan?</summary>
+                <p>Silakan hubungi kami lewat WhatsApp. Ketentuan perubahan dan pembatalan akan dikonfirmasi oleh tim kami.</p>
+              </details>
+              <details>
+                <summary>Bagaimana cara memakai kode promo?</summary>
+                <p>Masukkan kode promo di bagian Data Pemesan, lalu klik "Terapkan". Potongan harga akan muncul di ringkasan pesanan.</p>
+              </details>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer id="contact">
+        <div class="layar-dalam">
+          <div class="kolom-footer">
+            <div>
+              <h5><a href="#aboutus">Info</a></h5>
+              <p>Layanan panduan dan pemesanan wisata terbaik di Indonesia.</p>
+            </div>
+            <div>
+              <h5><a href="https://wa.me/6285864923309?text=Halo,%20saya%20ingin%20bertanya%20tentang%20paket%20wisata" target="_blank" rel="noopener">Contact</a></h5>
+              <p>Hubungi kami via email atau telepon untuk layanan bantuan.</p>
+            </div>
+            <div>
+              <h5><a href="#faq" id="buka-chat">Help</a></h5>
+              <p>Kunjungi pusat bantuan untuk FAQ dan panduan pemesanan.</p>
+            </div>
+            <div>
+              <h5><a href="#home">Sitemap</a></h5>
+              <p>Akses halaman utama, destinasi, paket wisata, dan blog.</p>
+            </div>
+          </div>
+          <div class="copyright">&copy; 2026 Traveling Indonesia</div>
+        </div>
+      </footer>
+    </div>
+
+    <!-- Popup detail tujuan -->
+    <div class="modal" id="modal-detail" hidden>
+      <div class="isi-modal">
+        <button type="button" class="tutup-modal" aria-label="Tutup">×</button>
+        <h3 id="detail-judul"></h3>
+        <div id="detail-foto" class="foto-detail"></div>
+        <p class="detail-meta"><strong>Durasi:</strong> <span id="detail-durasi"></span></p>
+        <p id="detail-deskripsi"></p>
+        <ul id="detail-sorotan" class="detail-sorotan"></ul>
+        <a href="#" class="tombol" id="pilih-dari-detail">PILIH TUJUAN INI</a>
+      </div>
+    </div>
+
+    <!-- Popup pembayaran QRIS -->
+    <div class="modal" id="modal-bayar" hidden>
+      <div class="isi-modal">
+        <button type="button" class="tutup-modal" aria-label="Tutup">×</button>
+        <h3>Pembayaran</h3>
+        <p class="kode-pesanan">Kode pesanan: <strong id="bayar-kode"></strong></p>
+        <p>Scan QRIS di bawah, lalu masukkan nominal sesuai total.</p>
+        <img src="asset/qris.png" alt="QRIS Pembayaran" class="gambar-qris" />
+        <div class="nominal-bayar">
+          <span>Total bayar</span>
+          <strong id="nominal-modal">Rp 0</strong>
+        </div>
+        <button type="button" class="tombol" id="salin-nominal">SALIN NOMINAL</button>
+
+        <form id="form-bukti" class="form-auth">
+          <label for="file-bukti">Unggah bukti pembayaran (JPG, PNG, atau WebP, maks. 3 MB)</label>
+          <input type="file" id="file-bukti" accept="image/jpeg,image/png,image/webp" />
+          <p class="galat-auth" id="galat-bukti" role="alert"></p>
+          <p class="info-bukti" id="info-bukti"></p>
+          <button type="submit" class="tombol">KIRIM BUKTI</button>
+        </form>
+        <p class="catatan-bayar">Belum membayar? Bukti bisa diunggah nanti lewat bagian "Pesanan Saya".</p>
+        <a href="#" class="tombol" id="kirim-bukti">HUBUNGI VIA WHATSAPP</a>
+      </div>
+    </div>
+
+    <!-- Popup ganti kata sandi -->
+    <div class="modal" id="modal-sandi" hidden>
+      <div class="isi-modal">
+        <button type="button" class="tutup-modal" aria-label="Tutup">×</button>
+        <h3>Ganti Kata Sandi</h3>
+        <form id="form-sandi" class="form-auth">
+          <label for="sandi-lama">Kata sandi lama</label>
+          <input type="password" id="sandi-lama" autocomplete="current-password" />
+          <label for="sandi-baru">Kata sandi baru (minimal 8 karakter)</label>
+          <input type="password" id="sandi-baru" autocomplete="new-password" />
+          <p class="galat-auth" id="galat-sandi" role="alert"></p>
+          <button type="submit" class="tombol">SIMPAN</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Popup masuk / daftar -->
+    <div class="modal" id="modal-auth" hidden>
+      <div class="isi-modal">
+        <button type="button" class="tutup-modal" aria-label="Tutup">×</button>
+        <h3>Akun</h3>
+        <div class="tab-auth">
+          <button type="button" data-tab="masuk" class="aktif">Masuk</button>
+          <button type="button" data-tab="daftar">Daftar</button>
+        </div>
+
+        <form id="form-masuk" class="form-auth">
+          <label for="masuk-email">Email</label>
+          <input type="email" id="masuk-email" autocomplete="email" />
+          <label for="masuk-sandi">Kata sandi</label>
+          <input type="password" id="masuk-sandi" autocomplete="current-password" />
+          <p class="galat-auth" id="galat-masuk" role="alert"></p>
+          <button type="submit" class="tombol">MASUK</button>
+        </form>
+
+        <form id="form-daftar" class="form-auth" hidden>
+          <label for="daftar-nama">Nama lengkap</label>
+          <input type="text" id="daftar-nama" maxlength="60" autocomplete="name" />
+          <label for="daftar-email">Email</label>
+          <input type="email" id="daftar-email" autocomplete="email" />
+          <label for="daftar-sandi">Kata sandi (minimal 8 karakter)</label>
+          <input type="password" id="daftar-sandi" autocomplete="new-password" />
+          <p class="galat-auth" id="galat-daftar" role="alert"></p>
+          <button type="submit" class="tombol">DAFTAR</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Popup tiket digital -->
+    <div class="modal" id="modal-tiket" hidden>
+      <div class="isi-modal isi-tiket">
+        <button type="button" class="tutup-modal" aria-label="Tutup">×</button>
+        <h3>Tiket Digital</h3>
+        <div class="wadah-tiket">
+          <canvas id="kanvas-tiket" width="1000" height="440"></canvas>
+        </div>
+        <a href="#" class="tombol" id="unduh-tiket" download="tiket.png">UNDUH TIKET (PNG)</a>
+        <p class="catatan-bayar">Tunjukkan tiket ini kepada pemandu saat keberangkatan.</p>
+      </div>
+    </div>
+
+    <!-- Popup ubah akun pelanggan (admin) -->
+    <div class="modal" id="modal-akun" hidden>
+      <div class="isi-modal isi-admin">
+        <button type="button" class="tutup-modal" aria-label="Tutup">×</button>
+        <h3>Ubah Akun Pelanggan</h3>
+        <form id="form-akun" class="form-auth">
+          <label for="akun-nama">Nama</label>
+          <input type="text" id="akun-nama" maxlength="60" />
+          <label for="akun-email">Email</label>
+          <input type="email" id="akun-email" maxlength="120" />
+          <label class="baris-centang"><input type="checkbox" id="akun-aktif" /> Akun aktif</label>
+          <p class="galat-auth" id="galat-akun" role="alert"></p>
+          <button type="submit" class="tombol">SIMPAN</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Popup atur ulang sandi pelanggan (admin) -->
+    <div class="modal" id="modal-reset" hidden>
+      <div class="isi-modal isi-admin">
+        <button type="button" class="tutup-modal" aria-label="Tutup">×</button>
+        <h3>Atur Ulang Kata Sandi</h3>
+        <p id="reset-untuk"></p>
+        <form id="form-reset" class="form-auth">
+          <label for="reset-sandi">Kata sandi baru (minimal 8 karakter)</label>
+          <input type="password" id="reset-sandi" autocomplete="new-password" />
+          <p class="galat-auth" id="galat-reset" role="alert"></p>
+          <button type="submit" class="tombol">SIMPAN</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Popup tambah / ubah katalog (admin) -->
+    <div class="modal" id="modal-admin" hidden>
+      <div class="isi-modal isi-admin">
+        <button type="button" class="tutup-modal" aria-label="Tutup">×</button>
+        <h3 id="judul-form-admin"></h3>
+        <form id="form-admin" class="form-auth">
+          <div id="isi-form-admin"></div>
+          <p class="galat-auth" id="galat-admin" role="alert"></p>
+          <button type="submit" class="tombol">SIMPAN</button>
+        </form>
+      </div>
+    </div>
+
+    <a href="#home" id="ke-atas" aria-label="Kembali ke atas">↑</a>
+
+    <!-- Chat CS mengambang (pelanggan) -->
+    <div class="cs-widget" id="cs-widget" hidden>
+      <div class="cs-panel" id="cs-panel" hidden>
+        <div class="cs-kepala">
+          <strong>Chat dengan CS</strong>
+          <button type="button" id="cs-tutup" aria-label="Tutup chat">&times;</button>
+        </div>
+        <div class="isi-cs" id="isi-chat-pelanggan" aria-live="polite"><p class="kosong-cs">Memuat...</p></div>
+        <form class="form-cs" id="form-chat-pelanggan" autocomplete="off">
+          <input type="text" id="input-chat-pelanggan" maxlength="1000" placeholder="Tulis pesan untuk CS..." />
+          <button type="submit" class="tombol">KIRIM</button>
+        </form>
+        <p class="galat-auth" id="galat-chat-pelanggan" role="alert"></p>
+      </div>
+      <button type="button" class="cs-toggle" id="cs-toggle" aria-expanded="false" aria-controls="cs-panel">
+        <span>Chat CS</span>
+        <span class="badge-chat" id="badge-chat-pelanggan" hidden>0</span>
+      </button>
+    </div>
+
+    <!-- Pemberitahuan singkat -->
+    <div class="toast" id="toast" role="status" hidden></div>
+
+    <!-- Tombol WhatsApp -->
+    <a
+      href="https://wa.me/6285864923309?text=Halo,%20saya%20ingin%20bertanya%20tentang%20paket%20wisata"
+      class="chat-wa"
+      target="_blank"
+      rel="noopener"
+      aria-label="Chat via WhatsApp"
+    >
+      <span>Chat WhatsApp</span>
+    </a>
+
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.min.js"
+      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+      crossorigin="anonymous"
+    ></script>
+    <script src="javascript.js"></script>
+    <!-- Chat langsung di web (PHP + SQLite) -->
+    <script src="chat.js"></script>
+  </body>
+</html>
